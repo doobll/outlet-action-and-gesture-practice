@@ -10,7 +10,7 @@ import AVFoundation
 
 
 class ViewController: UIViewController {
-   
+    
 
     @IBOutlet weak var minionImageView: UIImageView!
     @IBOutlet weak var nameSegmentedControl: UISegmentedControl!
@@ -102,33 +102,30 @@ class ViewController: UIViewController {
         minionPageControl.currentPage = index
     }
     
-
+  
     @IBAction func speak(_ sender: UIButton) {
-        sythesizer.speak(speechUtterence)
-        
-        speechUtterence.pitchMultiplier = Float(pitchStepper.value)
-        speechUtterence.rate = Float(speedStepper.value)
-        speechUtterence.volume = Float(volumeSlider.value)
+       
         speechUtterence.voice = AVSpeechSynthesisVoice(language:  "en-GB")
+        sythesizer.speak(speechUtterence)
         print(pitchStepper.value,speedStepper.value,volumeSlider.value)
         
     }
 
 
     @IBAction func adjustPitch(_ sender: UIStepper) {
-        
+        speechUtterence.pitchMultiplier = Float(pitchStepper.value)
         pitchValueLabel.text = String(format: "%.2f", sender.value)
         print("pitchStepper",sender.value)
     }
 
     @IBAction func adjustSpeed(_ sender: UIStepper) {
-        
+        speechUtterence.rate = Float(speedStepper.value)
         speedValueLabel.text = String(format: "%.2f", sender.value)
         print("rateStepper",sender.value)
     }
     
     @IBAction func adjustVolume(_ sender: UISlider) {
-     
+        speechUtterence.volume = Float(volumeSlider.value)
         volumeValueLabel.text = String(format: "%.2f", sender.value)
         print("volumeSlider",sender.value)
     }
